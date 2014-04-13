@@ -30,7 +30,7 @@ Then just type your _Keyword_ (this is the thing you want to remember forever) a
 How it works
 ------------
 
-The password is the _md5sum_ of your _Salt_+_URI_+_Keyword_
+The password is the _md5sum_ of your _Salt_+_URI_+_Keyword_.
 To keep it safe, the _Keyword_ should never be disclosed.
 The _URI_ is public information and the _Salt_ is semi-private.
 
