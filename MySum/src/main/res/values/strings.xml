@@ -6,7 +6,7 @@
     <string name="question_text">What URI?</string>
     <string name="ok_button">OK</string>
     <string name="clear_button">Clear</string>
-    <string name="ready_toast">Ready!</string>
+    <string name="ready_toast">Ready to past!</string>
     <string name="clear_toast">Clear!</string>
     <string name="pref_salt">Salt</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
