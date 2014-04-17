@@ -21,7 +21,7 @@ To generate a password you need tree things:
  - URI     - this is a reference to the service the password belongs to. (ex: facebook.com)
  
 The generated password will look like this:
- 978ac6e970b5bce9c1524bccb46d8d43
+ 7a70b4e7059a7d283c883288be3de0bed02d10fda4602c8de4699debcf6afbf2
 
 The first time you use __ZPass__ you need to go to the settings and create your _Salt_.
 Then just type your _Keyword_ (this is the thing you want to remember forever) and then type in the _URI_ field some text that identifies the service you're going to use. I like to use domain names like "facebook.com". Use something logic because __you will have to remember these values__.
@@ -30,7 +30,7 @@ Then just type your _Keyword_ (this is the thing you want to remember forever) a
 How it works
 ------------
 
-The password is the _md5sum_ of your _Salt_+_URI_+_Keyword_.
+The password is the _sha256_ of your _Salt_+_URI_+_Keyword_.
 To keep it safe, the _Keyword_ should never be disclosed.
 The _URI_ is public information and the _Salt_ is semi-private.
 

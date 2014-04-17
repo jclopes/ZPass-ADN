@@ -57,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
         mOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Calculate the md5 and put it on the clipboard
+                // Calculate the hash and put it on the clipboard
                 ClipboardManager cb = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                 cb.setPrimaryClip(ClipData.newPlainText(
                         "hash", genPass(mUriEditText.getText().toString(), mPassEditText.getText().toString())));
@@ -104,13 +104,13 @@ public class MainActivity extends ActionBarActivity {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(res, mSharedPreferences.getString("pref_salt", ""), input, pass));
 
-        MessageDigest md5 = null;
+        MessageDigest hash = null;
         try {
-            md5 = MessageDigest.getInstance("MD5");
+            hash = MessageDigest.getInstance("SHA256");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        byte[] theDigest = md5.digest(sb.toString().getBytes());
+        byte[] theDigest = hash.digest(sb.toString().getBytes());
         StringBuilder hex = new StringBuilder();
         for (Byte b: theDigest) hex.append(String.format("%02x", b&0xff));
 
