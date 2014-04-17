@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -71,6 +72,10 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 // Clear the uri_edittext field
                 mUriEditText.setText("", TextView.BufferType.EDITABLE);
+                // Clear clipboard
+                ClipboardManager cb = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+                cb.setPrimaryClip(ClipData.newPlainText("hash", ""));
+
                 Toast.makeText(MainActivity.this, R.string.clear_toast, Toast.LENGTH_SHORT).show();
             }
         });
@@ -111,10 +116,12 @@ public class MainActivity extends ActionBarActivity {
             e.printStackTrace();
         }
         byte[] theDigest = hash.digest(sb.toString().getBytes());
-        StringBuilder hex = new StringBuilder();
-        for (Byte b: theDigest) hex.append(String.format("%02x", b&0xff));
-
-        return hex.toString();
+        // Convert the hash to base62 so that it becomes a shorter string
+        String base64 = Base64.encodeToString(theDigest, Base64.URL_SAFE|Base64.NO_PADDING|Base64.NO_WRAP);
+        // Destructively convert base64 to base62.
+        // This is ok since we don't care about reverting back to the original string.
+        String base62 = base64.replaceAll("-", "Z").replaceAll("_", "z");
+        return base62;
     }
 
 }

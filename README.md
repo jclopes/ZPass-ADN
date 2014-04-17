@@ -46,3 +46,4 @@ The algorithm is case sensitive, so be aware of where you use capital letters.
 
 Use it at your own risk.
 
+This code is still in beta state and I might/will change the algorithm.
