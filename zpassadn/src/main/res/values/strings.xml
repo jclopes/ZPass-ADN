@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MySum</string>
-    <string name="action_settings">Settings</string>
-    <string name="question_text">What URI?</string>
+    <string name="app_name">ZPass</string>
+    <string name="what_uri_label">What URI?</string>
     <string name="ok_button">OK</string>
     <string name="clear_button">Clear</string>
     <string name="ready_toast">Ready to past!</string>
     <string name="clear_toast">Clear!</string>
     <string name="pref_salt">Salt</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="pass_text">Keyword ?</string>
+    <string name="what_keyword_label">Keyword ?</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MySum.iml" filepath="$PROJECT_DIR$/MySum.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ZPass-ADN.iml" filepath="$PROJECT_DIR$/ZPass-ADN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZPassADN.iml" filepath="$PROJECT_DIR$/ZPassADN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zpassadn/zpassadn.iml" filepath="$PROJECT_DIR$/zpassadn/zpassadn.iml" />
     </modules>
   </component>
 </project>

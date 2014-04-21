@@ -1,4 +1,4 @@
-package com.zunbid.mysum;
+package com.zunbid.zpassadn;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
