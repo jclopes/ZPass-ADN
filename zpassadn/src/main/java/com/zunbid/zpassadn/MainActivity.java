@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -111,16 +111,16 @@ public class MainActivity extends ActionBarActivity {
 
         MessageDigest hash = null;
         try {
-            hash = MessageDigest.getInstance("SHA256");
+            hash = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         byte[] theDigest = hash.digest(sb.toString().getBytes());
         // Convert the hash to base62 so that it becomes a shorter string
-        String base64 = Base64.encodeToString(theDigest, Base64.URL_SAFE|Base64.NO_PADDING|Base64.NO_WRAP);
+        String base64 = Base64.encodeToString(theDigest);
         // Destructively convert base64 to base62.
         // This is ok since we don't care about reverting back to the original string.
-        String base62 = base64.replaceAll("-", "Z").replaceAll("_", "z");
+        String base62 = base64.replaceAll("\\+", "Z").replaceAll("/", "z").replaceAll("=", "");
         return base62;
     }
 
