@@ -5,7 +5,7 @@
     <string name="what_uri_label">What URI?</string>
     <string name="ok_button">OK</string>
     <string name="clear_button">Clear</string>
-    <string name="ready_toast">Ready to past!</string>
+    <string name="ready_toast">Ready to paste!</string>
     <string name="clear_toast">Clear!</string>
     <string name="pref_salt">Salt</string>
     <string name="what_keyword_label">Keyword ?</string>
