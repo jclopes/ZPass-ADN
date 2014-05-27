@@ -46,7 +46,13 @@ public class MainActivity extends ActionBarActivity {
                 if(actionId == EditorInfo.IME_ACTION_DONE) {
                     ClipboardManager cb = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                     cb.setPrimaryClip(ClipData.newPlainText(
-                            "hash", genPass(mUriEditText.getText().toString(), mPassEditText.getText().toString())));
+                            "hash",
+                            genPass(
+                                    mSharedPreferences.getString("pref_salt", ""),
+                                    mUriEditText.getText().toString(),
+                                    mPassEditText.getText().toString()
+                            )
+                    ));
                     Toast.makeText(MainActivity.this, R.string.ready_toast, Toast.LENGTH_SHORT).show();
                 }
 
@@ -61,7 +67,13 @@ public class MainActivity extends ActionBarActivity {
                 // Calculate the hash and put it on the clipboard
                 ClipboardManager cb = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                 cb.setPrimaryClip(ClipData.newPlainText(
-                        "hash", genPass(mUriEditText.getText().toString(), mPassEditText.getText().toString())));
+                        "hash",
+                        genPass(
+                                mSharedPreferences.getString("pref_salt", ""),
+                                mUriEditText.getText().toString(),
+                                mPassEditText.getText().toString()
+                        )
+                ));
                 Toast.makeText(MainActivity.this, R.string.ready_toast, Toast.LENGTH_SHORT).show();
             }
         });
@@ -80,7 +92,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,10 +115,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private String genPass(String input, String pass) {
+    private String genPass(String salt, String input, String pass) {
         final String res = "%s@%s:%s";
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format(res, mSharedPreferences.getString("pref_salt", ""), input, pass));
 
         MessageDigest hash = null;
         try {
@@ -115,9 +124,9 @@ public class MainActivity extends ActionBarActivity {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        byte[] theDigest = hash.digest(sb.toString().getBytes());
+        byte[] theDigest = hash.digest(String.format(res, salt, input, pass).getBytes());
         // Convert the hash to base62 so that it becomes a shorter string
-        String base64 = Base64.encodeToString(theDigest);
+        String base64 = Base64.encodeToString(theDigest, 0, 32, 0);
         // Destructively convert base64 to base62.
         // This is ok since we don't care about reverting back to the original string.
         String base62 = base64.replaceAll("\\+", "Z").replaceAll("/", "z").replaceAll("=", "");
