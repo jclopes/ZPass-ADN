@@ -130,7 +130,7 @@ public class MainActivity extends ActionBarActivity {
         // Destructively convert base64 to base62.
         // This is ok since we don't care about reverting back to the original string.
         String base62 = base64.replaceAll("\\+", "Z").replaceAll("/", "z").replaceAll("=", "");
-        return base62;
+        return base62.substring(0, 16);
     }
 
 }
